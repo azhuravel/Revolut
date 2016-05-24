@@ -7,9 +7,11 @@ Technologies:
 + Hibernate
 + H2 (in-memory)
 + Spark framework
-- nothing from Spring :)
+- Nothing from Spring :)
 
-User has several Accounts. It is acceptable to create new users, add their accounts and send transfers.
+The service is supposed to response with appropriate HTTP codes.
+
+Data model. User(name : String) has several Accounts (ammount : Long). It is acceptable to create new users, add their accounts and send thread-safe transfers.
 
 Test case:
 
