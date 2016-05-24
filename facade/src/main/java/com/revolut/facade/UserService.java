@@ -75,6 +75,8 @@ public class UserService {
         } catch (Exception e) {
             session.getTransaction().rollback();
             response.status(500);
+        } finally {
+            session.close();
         }
 
         response.status(201);

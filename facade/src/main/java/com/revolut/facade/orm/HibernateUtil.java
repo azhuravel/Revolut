@@ -35,11 +35,17 @@ public class HibernateUtil {
 
     public static Long saveOrUpdateEntity(Object entity) {
         Session session = HibernateUtil.getSession();
-        session.beginTransaction();
-
-        Long id = (Long) session.save(entity);
-
-        session.getTransaction().commit();
-        return id;
+        try {
+            session.beginTransaction();
+            Long id = (Long) session.save(entity);
+            session.getTransaction().commit();
+            return id;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            throw e;
+        } finally {
+            if (session != null)
+                session.close();
+        }
     }
 }
